@@ -4,6 +4,6 @@
 // email: b.hailpern@northeastern.edu
 
 int main() {
-  printf("Hello World.  This is Brent.\n");
+  printf("Hello World.  This is Lingyu Hu.\n");
   return 0;
 }
