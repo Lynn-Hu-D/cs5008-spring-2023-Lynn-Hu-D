@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Lingyu Hu
+// email: hu.lingyu@northeastern.edu
 
 #include <stdio.h>   // stardard input/output library
 #include <stdbool.h> // standard boolean library: bool, true, false
@@ -92,16 +92,23 @@ void enqueue(queue_t* q_p, int d) {
   node_t* n_p = NULL; // temp node pointer
   
   if (q_p != NULL) {
+    n_p = newNode(d); 
 
     if (isEmpty(q_p)) {
       // queue is empty so insertion is easy
 
       // ***** INSERT YOUR CODE HERE *****
+      q_p -> head_p = n_p;
+      q_p -> tail_p = n_p;
       
     } else {
       // queue is not empty
 
       // ***** INSERT YOUR CODE HERE *****
+      q_p -> tail_p -> right_p = n_p;
+      n_p -> left_p = q_p -> tail_p;
+
+      q_p -> tail_p = n_p; 
     } 
   }
   
@@ -123,14 +130,18 @@ int dequeue(queue_t* q_p) {
 	// only one node in the queue, clear queue head and tail 
 
 	// ***** INSERT YOUR CODE HERE *****
-	
+
+      q_p -> head_p = NULL;
+      q_p -> tail_p = NULL;
+      
       } else {
 	// mulitple nodes in queue, clean up head pointer and new head of queue
 
 	// ***** INSERT YOUR CODE HERE *****
-
+    q_p -> head_p = n_p -> right_p; 
+    n_p -> right_p -> left_p = NULL;
+  
       }
-	
       freeNode(n_p);  // free up the node that was dequeued
     }
   }
@@ -180,9 +191,9 @@ int main () {
 
     t = getRandom(MAXMAGNITUDE);
     printf("enqueue[2] %d\n", t);
-    enqueue(q2_p, t);    
+    enqueue(q2_p, t);   
   }
-
+  
   printf("\n");
 
   printf("dequeue[1]: ");
