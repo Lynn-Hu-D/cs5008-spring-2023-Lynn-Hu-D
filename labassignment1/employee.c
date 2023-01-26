@@ -28,7 +28,7 @@ void display(int n, employee_t* s)
 {
     int i;
     for (i = 0; i < n; i++) {
-        printf("The details of the employee %d:\nempId: %d\nName: %s\ndesignation: %s\nDept: %s\n", i+1, *&s[i].empId, s[i].Name, s[i].Designation, s[i].Dept);
+        printf("The details of the employee %d:\nempId: %d\nName: %s\ndesignation: %s\nDept: %s\n", i+1, *&s[i].empId, (&s[i])->Name, s[i].Designation, s[i].Dept);
     }
     
      
@@ -49,7 +49,6 @@ if (s != NULL) {
     display(n, s);
     free(s); 
 } 
-printf("/////");
 return 0;
 }
 
