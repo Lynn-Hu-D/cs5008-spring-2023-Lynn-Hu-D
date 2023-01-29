@@ -38,7 +38,7 @@ void enqueue(int data, int *arr)
  //insert your code here
  
  if(isfull()){
-    //printf("The queue if full");
+    printf("Queue is full\n");
     return;
  }
     rear += 1;
@@ -49,13 +49,13 @@ int dequeue(int *arr)
 {   
     //insert your code here
     if (isempty()) {
-        //printf("The queue is empty\n");
+        printf("Queue is empty\n");
         return -1;
     }
     int res;
-    res = arr[front + 1];
-    for (int i = front + 1; i <= rear; i++) {
-        arr[i - 1] = arr[i];
+    res = arr[0];
+    for (int i = 0; i < N- 1; i++) {
+        arr[i] = arr[i + 1];
     }  
     arr[rear] = -1;
     rear -= 1;
