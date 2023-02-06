@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Lingyu Hu
+// email: hu.lingyu@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,15 +49,47 @@ int main(){
   for (i=0; i<LIMIT; i++) {
 
     // INSERT YOUR CODE HERE
-    
+    smallest = -1;
+    for (j=0; j<LIMIT; j++) {
+      if (valid[j] && smallest == -1){
+        smallest = j;
+      } else if (valid[j] && source[j] < source[smallest]){
+        smallest = j;
+      }
+    }
+   dest[i] = source[smallest];
+   valid[smallest] = false;
   }
+
+  // in place selection
+  // for(i=0; i<LIMIT - 1; i++){
+  //   smallest = i;
+  //   // find the index of the smallest element
+  //   for(j=i; j<LIMIT; j++) {
+  //     if (source[j] < source[smallest]){
+  //       smallest = j;
+  //     }
+  //   }
+  //   // swap
+  //   int temp = source[i];
+  //   source[i] = source[smallest];
+  //   source[smallest] = temp;
+  // }
   
   //print out sorted array in rows of 10
   printf("Destination array:\n");
   
 
   // INSERT YOUR CODE HERE
-    
+  for (i=0; i < ((LIMIT/10)+1); i++) {
+    for (j=0; j<10; j++) {
+      if (i*10+j < LIMIT) {
+	printf("%.2d ",dest[i*10+j]);
+      }
+    }
+    printf("\n");
+  }
+  printf("\n");
  
   
   
