@@ -15,14 +15,38 @@ int main()
     printf("\n Cannot open the file \n");
     exit(0);
     }
-    
+
     //insert your code here
-    
-    
-    
-    
-    
-    
-    
+    printf("contents of the file are\n");
+    while(fscanf(fp, "%d", &arr[count]) == 1) { 
+        printf("%d\n", arr[count]);
+        count++;
+    } 
+
+    // insertion sort
+    for (i = 1; i < count; i++) {
+        j = i;
+        temp = arr[j];
+        while (j > 0 && arr[j - 1] > temp) {
+            arr[j] = arr[j - 1];
+            j -= 1;
+        }
+        arr[j] = temp;
+    }
+
+    // put the contents of arr array into the file
+    printf("output is:\n");
+    fp = fopen("Output.txt", "w");
+    if (fp == NULL) {
+        printf("The file cannot be opened");
+        exit(0);
+    }
+    for (i = 0; i < count; i++) {
+        fprintf(fp, "%d\n", arr[i]);
+        printf("%d\n", arr[i]);
+    }
+
+    fclose(fp);
+
     return 0;
 }
