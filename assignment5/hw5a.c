@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Lingyu Hu
+// email: hu.lingyu@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,7 +40,39 @@ void mergeIt(
   
 
   // ADD YOUR CODE HERE
-  
+  int l = leftStart;
+  int r = rightStart;
+  char* temp = (char*) malloc(sizeof(char) * (rightStop - leftStart + 1));
+  int i = 0;
+
+  while (l <= leftStop && r <= rightStop) {
+   if (data[l] <= data[r]) {
+    temp[i] = data[l];
+    l++;
+   } else {
+    temp[i] = data[r];
+    r++;
+   }
+   i++;
+  }
+
+  while (l <= leftStop) {
+    temp[i] = data[l];
+    l++;
+    i++;
+  }
+
+  while (r <= rightStop){
+    temp[i] = data[r];
+    r++;
+    i++;
+  }
+
+  for (int i = 0; i < (rightStop - leftStart + 1); i++){
+    data[i + leftStart] = temp[i];
+  }
+
+  free(temp);
   return;
 }
 

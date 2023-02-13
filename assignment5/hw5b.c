@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Lingyu Hu
+// email: hu.lingyu@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +13,7 @@
 char randChar() {
   // 0 -> x20 -> ' '
   // 1 -> x21 -> '!'
-  // ,,,
+  // ,,,;
   // 94 -> x7E -> '~'
   // see https://ascii.cl
   return ((char)((rand() % RAND_RANGE)+0x20));
@@ -37,7 +37,40 @@ char upperChar(char c){
 void quicky(char* data, int left, int right) {
 
   // ADD YOUR CODE HERE
+  if (right <= left) {
+    return;
+  }
 
+  char* temp = (char*) malloc(sizeof(char) * (right - left + 1));
+
+  int small = 0;
+  int large = right - left;
+
+  char pivot = data[left];
+
+  for(int i = left + 1; i <= right; i++) {
+    if (data[i] < pivot) {
+      temp[small] = data[i];
+      small++;
+    } else {
+      temp[large] = data[i];
+      large--;
+    }
+  }
+
+  // elements that are equal to pivot  in the middle
+  for(int i= small; i <= large; i++) {
+    temp[i] = pivot;
+  }
+
+  for(int i = 0; i < right - left + 1; i++){
+    data[left + i] = temp[i];
+  }
+  free(temp);
+
+  quicky(data, left, left + small);
+  quicky(data, left + small + 1, right);
+ 
   return;
 }
 
