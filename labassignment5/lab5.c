@@ -125,26 +125,15 @@ node_t* Insert(node_t* root, int data)
 {
 
     //insert your code here
-    node_t* newNode = NewNode(data);
-    if (root != NULL) {
-        if (data < root -> data){
-            if (root -> left == NULL) {
-                root -> left = newNode;
-            } else {
-                Insert(root -> left, data);
-            }
-        } else {
-            if (root -> right == NULL) {
-                root -> right = newNode;
-            } else {
-                Insert(root -> right, data);
-            } 
-        }
-    } else {
-        root = newNode;
-    }
-    
+
+    if (root == NULL) return NewNode(data);
    
+    if (data < root -> data){
+        root->left = Insert(root -> left, data);
+    } else {
+        root->right = Insert(root -> right, data);
+    } 
+    
 
 /*updating the height after insertion of the node*/
     root->height = max(height(root->left),height(root->right))+1;
