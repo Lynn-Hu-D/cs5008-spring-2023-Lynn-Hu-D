@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Lingyu Hu
+// email: hu.lingyu@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -244,18 +244,34 @@ void freeQueue(queue_t* qp) {
 
 void preorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
+  if (np != NULL) {
+      printf("%c", np->data);
+      preorder(np->left);
+      preorder(np->right);
+
+  } 
 
   return;
 }
 
 void inorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
+  if (np != NULL) {
+    inorder(np->left);
+    printf("%c", np->data);
+    inorder(np->right);
+  }
   
   return;
 }
 
 void postorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
+if (np != NULL) {
+  postorder(np->left);
+  postorder(np->right);
+  printf("%c", np->data);
+}
   
   return;
 }
@@ -263,7 +279,26 @@ void postorder (tnode_t* np) {
 
 void breadthFirst (tnode_t* root) {
   // INSERT YOUR CODE HERE
+  tnode_t* cur;
+  qnode_t* qNode;
+  queue_t* q = newQueue();
+  if (root != NULL) {
+    enqueue(q, root);
+  }
   
+
+  while (!isEmpty(q)) {
+    cur = dequeue(q);
+    printf("%c", cur->data);
+    if (cur->left != NULL) {
+      enqueue(q, cur->left);
+    }
+    if (cur->right != NULL) {
+      enqueue(q, cur->right);
+    }
+
+  }
+  freeQueue(q);
   return;
 }
 
