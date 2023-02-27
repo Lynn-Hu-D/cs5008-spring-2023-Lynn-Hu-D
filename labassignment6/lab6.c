@@ -9,6 +9,18 @@
 void encrypt(char text[], int key)
 {
     //insert your code here
+    char begin;
+    int i = 0;
+   
+    while (text[i] != '\0'){
+        if (text[i] >= 'A' && text[i] <= 'Z'){
+            begin = 'A';
+        } else {
+            begin = 'a';
+        }
+        text[i] = (text[i] - begin + key) % 26 + begin;
+        i += 1;
+    } 
 }
 
 /*function to decrypt the data*/
@@ -16,6 +28,18 @@ void decrypt(char text[],int key)
 {
     
     //insert your code here
+    char begin;
+    int i = 0;
+   
+    while (text[i] != '\0'){
+        if (text[i] >= 'A' && text[i] <= 'Z'){
+            begin = 'A';
+        } else {
+            begin = 'a';
+        }
+        text[i] = (text[i] - begin - key + 26) % 26 + begin;
+        i += 1;
+    } 
     
 }
 
