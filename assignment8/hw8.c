@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Lingyu Hu
+// email: hu.lingyu@northeastern.edu
 
 // format of document is a bunch of data lines beginning with an integer (rank which we ignore)
 // then a ',' followed by a double-quoted string (city name)
@@ -67,6 +67,13 @@ int hash2(char* s) {
   int sumOfS = 0;
 
   //**** YOUR CODE GOES HERE ****
+  for (int i = 0; i < strlen(s); i++) {
+    if (s[i] == '\"') {
+      break;
+    } else {
+      sumOfS += (int)s[i];
+    }
+  }
 
   return (sumOfS % HASHSIZE);
 }
@@ -76,6 +83,13 @@ int hash3(char* s) {
   long productOfS = 1;
 
   //**** YOUR CODE GOES HERE ****
+  for (int i = 0; i < 2; i++) {
+    if (s[i] == '\"'){
+      break;
+    } else {
+      productOfS *= (int)s[i];
+    }
+  }
 
   return ((int)(productOfS % HASHSIZE));
 }
@@ -91,6 +105,14 @@ bool addToHashTable(keyvalue_t* t[], int loc, char* k, int v) {
   bool result = true;
 
   //**** YOUR CODE GOES HERE ****
+  keyvalue_t* pair = newKeyValue(k, v);
+  if (pair == NULL || loc < 0 || loc > HASHSIZE) {
+    result = false;
+  } else {
+    pair-> next = t[loc];
+    t[loc] = pair;
+  }
+
 
   return result;
 }
