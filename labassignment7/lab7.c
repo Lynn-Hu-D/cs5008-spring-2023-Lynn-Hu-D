@@ -1,6 +1,6 @@
 
-/*Enter your name here*/
-/* Enter your email here*/
+/*Lingyu Hu*/
+/* hu.lingyu@northeastern.edu*/
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -35,15 +35,41 @@ node_t *insert(struct node *front)
     int pri=temp->priority;
 
  /*insert your code here*/
+ if (front == NULL || pri > front->priority) {
+    temp->next = front;
+    return temp;
+ }
 
+node_t* cur = front;
+while (cur->next != NULL) {
+    if (pri > cur->next->priority) {
+        temp->next = cur->next;
+        cur->next = temp;
+        return front;
+    }
+    cur = cur->next;
+}
+cur->next = temp;
+return front;
 
 }
+
 
 /* Delete the node which is present at the front*/
 node_t *delete(struct node *front)
 {
-    
     /*Insert your code here*/
+    if (front == NULL) {
+        printf("%s", "There is no patient record.");
+    } else {
+        node_t* temp = front;
+        front = front->next;
+        printf("Deleted Record is : %d\n", temp->reg);
+        printf("Patient's name is : %s\n", temp->name);
+        printf("Patient's age is : %d\n", temp->age);
+        free(temp);
+    }
+    return front;
             
 }
 
@@ -75,6 +101,7 @@ void freenode(node_t *temp)
     free(temp);
     }
 }
+
 /*-----------------Main program---------------------------*/
 int main()
 {
