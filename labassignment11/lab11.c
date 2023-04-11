@@ -11,10 +11,34 @@ void *philosopher(void *x)
  //Treat variable x as a pointer to an int and then extract the value into n
     int* a=(int*)x;
     int n=*a;
-    
        /*-----Insert your code here----*/
-    
-    
+    int leftlock = n%5;
+    int rightlock = (n+1) % 5;
+    if (leftlock > rightlock) {
+      int tmp = leftlock;
+      leftlock = rightlock;
+      rightlock = tmp;
+    }
+    int eat = 0;
+    while (eat == 0) 
+    {
+      printf("philosopher %d is thinking.\n", n+1);
+      while (pthread_mutex_lock(&chopstick[leftlock])) {
+        printf("philosopher %d is thinking.\n", n+1);
+        sleep(2);
+      };
+      while (pthread_mutex_lock(&chopstick[rightlock])) {
+        printf("philosopher %d is thinking.\n", n+1);
+        sleep(2);
+      };
+      printf("philosopher %d is eating using chopstick[%d] and chopstick[%d].\n", n+1, leftlock, rightlock);
+      sleep(2);
+      printf("philosopher %d finished eating\n", n+1);
+      eat = 1;
+      pthread_mutex_unlock(&chopstick[leftlock]);
+      pthread_mutex_unlock(&chopstick[rightlock]);
+    }
+    return 0;
 }
 
 

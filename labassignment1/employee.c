@@ -17,7 +17,7 @@ void readData(int n, employee_t* s)
     int i;
     for (i = 0; i < n; i++) {
         printf("Enter the employeeId, Name, Designation and Dept of employee %d:\n", i+1);
-        scanf("%d\n%s\n%s\n%s", &s[i].empId, s[i].Name, s[i].Designation, s[i].Dept);
+        scanf("%d\n%s\n%s\n%s", &s[i].empId, (&s[i])->Name, s[i].Designation, s[i].Dept);
     }
     
     

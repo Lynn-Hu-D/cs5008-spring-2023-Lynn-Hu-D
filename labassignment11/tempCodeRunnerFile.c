@@ -1,0 +1,1 @@
+printf("philosopher %d is thinking.\n", n+1);

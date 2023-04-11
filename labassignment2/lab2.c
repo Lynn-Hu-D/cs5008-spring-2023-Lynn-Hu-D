@@ -42,7 +42,7 @@ void enqueue(int data, int *arr)
     return;
  }
     rear += 1;
-    arr[rear] = data;  
+    arr[rear] = data; 
 }
 /*----Function to remove the elements from the queue----*/
 int dequeue(int *arr)
@@ -54,7 +54,7 @@ int dequeue(int *arr)
     }
     int res;
     res = arr[0];
-    for (int i = 0; i < N- 1; i++) {
+    for (int i = 0; i <= rear - 1; i++) {
         arr[i] = arr[i + 1];
     }  
     arr[rear] = -1;
